@@ -6,6 +6,7 @@ remainder = len(hexcode)%9
 for i in range(0,len(hexcode)-remainder,9):
     tmp = hexcode[i]+hexcode[i+1]+hexcode[i+3]+hexcode[i+4]+hexcode[i+6]+hexcode[i+7]
     print(tmp)
+    print(str(int(tmp[0:2],16))+' '+str(int(tmp[2:4],16))+' '+str(int(tmp[4:6],16)))
     print('==========')
 
 if remainder!=8:
@@ -13,7 +14,9 @@ if remainder!=8:
         q=len(hexcode)//9
         tmp = hexcode[q*9]+hexcode[q*9+1]+'0000'
         print(tmp)
+        print(str(int(tmp[0:2],16))+' '+str(int(tmp[2:4],16))+' '+str(int(tmp[4:6],16)))
     if remainder == 5:
         q=len(hexcode)//9
         tmp = hexcode[q*9]+hexcode[q*9+1]+hexcode[q*9+3]+hexcode[q*9+4]+'00'
         print(tmp)
+        print(str(int(tmp[0:2],16))+' '+str(int(tmp[2:4],16))+' '+str(int(tmp[4:6],16)))
