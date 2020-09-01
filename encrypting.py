@@ -38,26 +38,26 @@ driver = webdriver.Chrome()
 driver.get('http://aes.online-domain-tools.com/')
 
 #key = input("키를 입력하세요 : ")
-intxt = "맨유 트레블"
+intxt = "man united"
 
 object = driver.find_element_by_id("frm-text")
 object.send_keys(intxt)
 
 #임시 key설정
-key="0f3b7c"
+key="0fc3fa0324ac"
 elem = driver.find_element_by_id("frmform-key")
 elem.send_keys(key)
 
-#여기 부분 아직 안됨 ㅅㅂ
-"""
-driver.find_element_by_id("frmform-function").click()
-select = Select(driver.find_element_by_id("frmform-function"))
-select.select_by_value("aes")
-
-#driver.find_element_by_css_selector("input[type='radio'][value='hex']")
-"""
-
 driver.find_element_by_id("frm-form-encrypt").click()
+
+#결과 읽어오기 ㅅㅂ ㅈㄴ 어렵네
+data = driver.find_elements_by_xpath('//*[@id="hex-editor"]/table/tbody/tr/td[2]/table/tbody/tr')
+for td in data:
+    print(td)
+print(data)
+
+#창닫기
+driver.close()
 
 #===================================================================================================
 #des 암호화 결과 rgb로 처리
@@ -68,21 +68,27 @@ driver.find_element_by_id("frm-form-encrypt").click()
 from random import *
 
 msg=''
-hexcode="f7	f9	70	2e	1a	a1	6f	5d	f9	cd	f3	ce	a1	d6	21 ab cd"
+hexcode="d2	51	64	c2	4b	8c	f7	b4	81	1a	30	89	ee	81	9c	85"
 #hexcode :  des해서 나온 16진 코드
 hexcode.split('  ')
 print(hexcode)
 
+'''
 #x1,y1,x2,y2는 방향 벡터를 구할 좌표들 실제로는 key값이될 부분
 x1= randint(0,re_width)
 y1= randint(0,re_height)
 x2= randint(0,re_width)
 y2= randint(0,re_height)
 
+'''
+'''
 #좌표의 rgb값 알아내기
 r1,g1,b1 = pix[y1][x1]
 r2,g2,b2 = pix[y2][x2]
+'''
 
+r1,g1,b1 = 15,195,250
+r2,g2,b2 = 3,36,172
 
 remainder = len(hexcode)%9
 for i in range(0,len(hexcode)-remainder,9):
@@ -147,7 +153,7 @@ if remainder!=8:
 
         msg=msg+str(vec_r1)+' '+str(vec_g1)+' '+str(vec_b1)+' '+str(vec_r2)+' '+str(vec_g2)+' '+str(vec_b2)+' '
 
-
+msg=msg[0:len(msg)-1]
 #stegano로 key값과 벡터를 보낸다
 #===================================================================================================
 #암호화 문장 steganography로 변환
