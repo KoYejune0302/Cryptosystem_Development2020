@@ -1,3 +1,4 @@
+
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 
@@ -9,6 +10,7 @@ driver.find_element_by_id("decode_btn").click()
 
 
 print('finish')
+
 #이게 우리가 스테가노 그래피로 얻은 결과
 text="195 -114 -150 207 45 -72 179 -120 -110 191 39 -32 232 -15 -121 244 144 -43 11 -147 -113 23 12 -35 223 -66 -94 235 93 -16 118 -195 -250 130 -36 -172"
 text=text.split(" ")
@@ -63,13 +65,11 @@ from selenium.webdriver.support.select import Select
 driver = webdriver.Chrome()
 driver.get('http://aes.online-domain-tools.com/')
 
-#key = input("키를 입력하세요 : ")
 intxt = final_msg
 
 object = driver.find_element_by_id("frm-text")
 object.send_keys(intxt)
 
-#임시 key설정
 key="0fc3fa0324ac"
 elem = driver.find_element_by_id("frmform-key")
 elem.send_keys(key)
